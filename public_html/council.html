@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <!--(if target dev)><!-->
+        <script src="js/libs/jquery-1.9.1/jquery.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/recordedEmployment.js"></script>
+        <script src="assets/js/serviceDataLoader.js"></script>
+        <script src="assets/js/councilLoader.js"></script>
+        <script src="assets/js/ssEmploymentLoader.js"></script>
+        <script src="assets/js/app.js"></script>
+        <!--<!(endif)-->
+        <!--(if target dist)>
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/GizarteSegurantzaGrunt.min.js"></script>
+        <!(endif)-->
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Noto+Sans' rel='stylesheet' type='text/css' />
+
+        <!--(if target dev)><!-->
+        <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+        <!--<!(endif)-->
+        <!--(if target dist)>
+        <link rel="stylesheet" type="text/css" href="css/GizarteSegurantzaGrunt.min.css">
+        <!(endif)-->
+        <script>
+            var mychart;
+            $(document).ready(function() {
+                var l = new ServiceDataLoader();
+                l.load().done(function(data) {
+//                    $("#debug").text(JSON.stringify(data));
+                    var configuration = {width: 940, chart: true};
+                    mychart = new App(data, '#target', configuration);
+                });
+            });
+        </script>
+        <style>
+            #target {
+                margin: auto;
+                width: 940px;
+            }
+        </style>
+    </head>
+    <body class="graph-page">
+
+        <div class="graph-page">
+            <div class="in">
+                <div id="target"></div>
+                <div id="debug" style="width: 380px; margin-top: 10px;text-align: center;"></div>
+            </div>
+        </div>
+    </body>
+</html>

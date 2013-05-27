@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="js/libs/jquery-1.9.0/jquery.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/recordedEmployment.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="assets/js/staticDataLoader.js"></script>
+        <script type="text/javascript" src="assets/js/app.js"></script>
+        <script type="text/javascript">
+            var l = new StaticDataLoader();
+            var data = l.load();
+            var configuration = {width: 940};
+            var mychart = new App(data, '#target', configuration);
+        </script>
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Noto+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <body>
+        <div id="target"></div>
+    </body>
+</html>

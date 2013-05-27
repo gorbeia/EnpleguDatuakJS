@@ -1,0 +1,180 @@
+/* 
+    Document   : style.css
+    Created on : May 7, 2013, 6:44:10 PM
+    Author     : inaki
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    /*font-family: sans-serif;*/
+    font-family: 'Noto Sans', sans-serif;
+}
+body.selector-page,
+body.graph-page {
+    background: url('../img/binding_dark.png') #444;
+}
+#chart_selector{
+    line-height: 200%;
+}
+.mselector{
+    line-height: 200%;
+    display: inline;
+    padding: 3px;
+    margin: 1px;
+    background-color: #ddd;
+    color:#444;
+    border-radius: 6px;
+    border: #666 1px solid;
+}
+.mselector.selected{
+    color:#292;
+    background-color: #cec;
+    border: #6a6 1px solid;
+}
+.chart_hl h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    font-family: 'Roboto Slab', serif;
+    font-size: 160%;
+}
+.chart_hl .month {
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 70%;
+    color: #aaa;
+}
+.chart_hl .total {
+    font-size: 350%;
+    font-weight: bold;
+    color: #888;
+    font-family: 'Roboto Slab', serif;
+}
+.chart_hl .compare span{
+    font-size: 120%;
+}
+.chart_hl .compare {
+    color: #444;
+}
+.chart_hl .negative {
+    color: red;
+}
+.chart_hl .positive {
+    color: green;
+}
+.chart_hl .negative:before {
+    content: "-";
+}
+.chart_hl .positive:before{
+    content: "+";
+}
+#front_embed .chart_hl{
+    margin: 2px 0 10px 0px;
+}
+.chart_hl{
+    margin: 10px 0 20px 50px;
+}
+
+div.selector-page,
+div.graph-page {
+    background: white;
+    width: 100%;
+}
+div.graph-page .in,
+div.selector-page .in {
+    /*    -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;*/
+    max-width: 940px;
+    margin: 120px auto;
+    padding: 20px 0 60px 0;
+}
+div.selector-page h1 {
+    font-family: 'Roboto Slab', serif;
+    color: #990000;
+    text-shadow: 1px 1px 2px #400;
+    filter: dropshadow(color=#444, offx=1, offy=1);
+}
+
+div.selector-page .azpiizenburua {
+    padding-bottom: 20px;
+}
+
+div.selector-page h3 {
+    display:inline;
+}
+div.selector-page .jarraibideak {
+    color: #666;
+}
+div.selector-page .asterisk{
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
+    width: 1.2em;
+    display:inline-block;
+
+    -moz-transform: scale(1) rotate(-30deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -webkit-transform: rotate(-30deg) ;
+    -o-transform: scale(1) rotate(-30deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -ms-transform: scale(1) rotate(-30deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    transform: rotate(-30deg);
+}
+div.selector-page .asterisk:hover{
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
+    display:inline-block;
+
+    -moz-transform: scale(1.8) rotate(-10deg);
+    -webkit-transform: scale(1.8) rotate(-10deg) ;
+    -o-transform: scale(1.8) rotate(-10deg);
+    -ms-transform: scale(1.8) rotate(-10deg);
+    transform: scale(1.8) rotate(-10deg);
+}
+div.selector-page .asterisk a {
+    text-decoration: none;
+    color: green;
+    font-size: 200%;
+}
+
+div.selector-page input,
+div.selector-page button {
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
+    display: block;
+    padding:10px;
+    /*max-width: 800px;*/
+    font-weight: bold;
+    color: black;
+    border:0px solid #9f9f9f;
+/*-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);*/
+}
+div.selector-page button:hover {
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    /* ...and now for the proper property */
+    transition:.5s;
+    color: green;
+    -webkit-box-shadow:  0px 0px 3px 1px green;
+    box-shadow:  0px 0px 3px 1px green;
+}
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Enpleguaren bilakaera udalez udal</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <!--(if target dev)><!-->
+        <script src="js/libs/jquery-1.9.1/jquery.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.tokeninput.js"></script>
+        <!--<!(endif)-->
+        <!--(if target dist)>
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/GizarteSegurantzaGrunt.min.js"></script>
+        <!(endif)-->
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Noto+Sans' rel='stylesheet' type='text/css'>
+
+        <!--(if target dev)><!-->
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <!--<!(endif)-->
+        <!--(if target dist)>
+        <script type="text/javascript" src="js/jquery.tokeninput.min.js"></script>
+        <!(endif)-->
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Noto+Sans' rel='stylesheet' type='text/css'>
+
+        <!--(if target dev)><!-->
+        <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/token-input.css" />
+        <!--<!(endif)-->
+        <!--(if target dist)>
+        <link rel="stylesheet" type="text/css" href="css/GizarteSegurantzaGrunt.min.css">
+        <!(endif)-->
+
+        <script type="text/javascript">
+            var debug658;
+            $(document).ready(function() {
+                $("#my-text-input").tokenInput("http://mongodb-rest.herokuapp.com/council/complete", {
+                    crossDomain: false,
+                    preventDuplicates: true
+
+                });
+                $("#button").click(function() {
+                    var tokens = $("#my-text-input").tokenInput("get");
+                    if (tokens.length === 0)
+                        return false;
+                    var ids = new Array();
+                    $.each(tokens, function(index, value) {
+                        ids.push(value.id);
+                    });
+//                    console.log(ids); 
+                    window.location = "council.html?councilCodes=" + JSON.stringify(ids);
+                });
+            });
+
+        </script>
+    </head>
+    <body class="selector-page">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="selector-page">
+            <div class="in">
+                <div>
+                    <h1>Enpleguaren bilakaera udalez udal</h1>
+                    <div class="azpiizenburua">
+                        <h3>Espainar Gizarte Segurantzak 2008ko urtarriletik aurrera hilero hedatutako dauen arabera</h3>
+                        <div class="asterisk"><a href="http://www.seg-social.es/Internet_1/Estadistica/Est/AfiliacionAltaTrabajadores/AfiliacionesAltaLaboral/Afiliaci_n__ltimo_d_a_del_mes/AfiliacionMunicipios/index.htm" target="_blank">*</a></div>
+                    </div>
+                    <div class="jarraibideak">Bilatu udalerriak ondorengo kutxan eta botoia sakatu</div>
+                </div>
+                <div>
+                    <input id="my-text-input" type="text"/>
+                    <button id="button">Eskuratu langileen bilakaera</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
