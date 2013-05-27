@@ -99,6 +99,12 @@ module.exports = function(grunt) {
         recursive: true,
         syncDest: true
       }
+    },
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: ['**/*']
     }
   });
 
@@ -111,9 +117,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-targethtml');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-rsync');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('test', ['jshint', 'jasmine']);
   grunt.registerTask('default', ['jshint', 'jasmine', 'concat:js', 'uglify']);
   grunt.registerTask('build', ['copy:libs', 'concat:js', 'uglify', 'concat:css', 'cssmin', 'targethtml:dist']);
+  grunt.registerTask('deploy', ['build', 'gh-pages']);
 
 };
