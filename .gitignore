@@ -2,3 +2,4 @@ build/
 dist/
 node_modules/
 test/node_modules/
+grunt-gh-pages
