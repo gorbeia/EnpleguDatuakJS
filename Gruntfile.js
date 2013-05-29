@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   };
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    clean: ["build", "dist"],
     copy: {
       libs: {
         external_libs: 'build/js/lib/',
@@ -114,6 +115,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-targethtml');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-rsync');
@@ -121,7 +123,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint', 'jasmine']);
   grunt.registerTask('default', ['jshint', 'jasmine', 'concat:js', 'uglify']);
-  grunt.registerTask('build', ['copy:libs', 'concat:js', 'uglify', 'concat:css', 'cssmin', 'targethtml:dist']);
+  grunt.registerTask('build', ['clean', 'copy:libs', 'concat:js', 'uglify', 'concat:css', 'cssmin', 'targethtml:dist']);
   grunt.registerTask('deploy', ['build', 'gh-pages']);
 
 };
