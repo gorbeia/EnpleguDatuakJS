@@ -29,12 +29,14 @@
         <!(endif)-->
         <script>
             var mychart;
+            var configuration = {width: 940, chart: true};
+            mychart = new App('#target', configuration);
             $(document).ready(function() {
                 var l = new ServiceDataLoader();
-                l.load().done(function(data) {
+
+                $.when(mychart.init(), l.load()).done(function(v, data) {
 //                    $("#debug").text(JSON.stringify(data));
-                    var configuration = {width: 940, chart: true};
-                    mychart = new App(data, '#target', configuration);
+                    mychart.load(data);
                 });
             });
         </script>
@@ -48,9 +50,7 @@
     <body class="graph-page">
         <div class="graph-page">
             <div class="in">
-                <div id="target">
-                    <span class="waiting">Datuak kargatzen, itxoin mesedez...</span>
-                </div>
+                <div id="target"></div>
                 <div id="debug" style="width: 380px; margin-top: 10px;text-align: center;"></div>
             </div>
         </div>

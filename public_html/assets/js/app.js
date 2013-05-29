@@ -1,7 +1,7 @@
 "use strict";
 /*global $:false */
 /*global google:false */
-var App = function(data, selector, defaultOptions) {
+var App = function(selector, defaultOptions) {
   defaultOptions.highlight = typeof defaultOptions.highlight === 'undefined' ? true : defaultOptions.highlight;
   defaultOptions.chart = typeof defaultOptions.chart === 'undefined' ? true : defaultOptions.chart;
   defaultOptions.table = typeof defaultOptions.table === 'undefined' ? true : defaultOptions.table;
@@ -22,8 +22,6 @@ var App = function(data, selector, defaultOptions) {
     vAxis: {textStyle: {fontSize: 12}},
     hAxis: {textStyle: {fontSize: 12}}
   };
-
-  recordedEmployment = RecordedEmployment.init(data);
 
   var drawChart = function(displayData) {
     if (typeof chart !== "undefined") {
@@ -130,8 +128,15 @@ var App = function(data, selector, defaultOptions) {
     drawHL(displayData);
   };
 
-  /* Init*/
-  $(document).ready(function() {
-    google.load("visualization", "1", {packages: ["corechart", "table"], callback: initCallBack});
-  });
+  self.load = function(data) {
+    recordedEmployment = RecordedEmployment.init(data);
+    initCallBack();
+  };
+
+  self.init = function() {
+    var dfd = new $.Deferred();
+    $(selector).append('<span class="waiting">Datuak kargatzen, itxoin mesedez...</span>');
+    google.load("visualization", "1", {packages: ["corechart", "table"], callback: dfd.resolve});
+    return dfd.promise();
+  };
 };
