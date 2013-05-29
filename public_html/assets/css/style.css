@@ -12,7 +12,7 @@ body {
     margin: 0;
     padding: 0;
     /*font-family: sans-serif;*/
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 body.selector-page,
 body.graph-page {
@@ -178,3 +178,6 @@ div.selector-page button:hover {
     box-shadow:  0px 0px 3px 1px green;
 }
 
+.google-visualization-table-table {
+    font-family: 'Open Sans', sans-serif !important;
+}

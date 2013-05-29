@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         external_libs: 'build/js/lib/',
         files: [
           {expand: true, flatten: true, src: ['public_html/assets/data/*.json'], dest: 'dist/assets/data/', filter: 'isFile'},
+          {expand: true, flatten: true, src: ['public_html/assets/img/*.png'], dest: 'dist/img', filter: 'isFile'},
           {expand: true, flatten: true, src: ['public_html/js/libs/**/*.js', '!public_html/js/libs/**/*.min*.js'], dest: '<%= copy.libs.external_libs %>', filter: 'isFile'}
         ]
       }

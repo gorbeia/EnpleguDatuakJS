@@ -66,7 +66,7 @@ var App = function(data, selector, defaultOptions) {
       var tableElement = $('<div/>',
               {
                 class: 'chart_table',
-                style: 'height: 210px;width:' + defaultOptions.width + 'px;'
+                style: 'width:' + defaultOptions.width + 'px;'
               }
       ).appendTo(selector);
       table = new google.visualization.Table(tableElement[0]);
