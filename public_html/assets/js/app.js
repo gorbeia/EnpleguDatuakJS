@@ -55,6 +55,7 @@ var App = function(data, selector, defaultOptions) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
   var initCallBack = function() {
+    $(selector).empty();
     initHightlight();
     initChart();
     initTable();
