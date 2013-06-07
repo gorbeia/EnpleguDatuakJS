@@ -1,8 +1,8 @@
 "use strict";
 /*global $:false */
-var SSEmploymentLoader = function(councilCodes) {
+var UnemploymentLoader = function(councilCodes) {
     var self = this;
-    var url = "http://mongodb-rest.herokuapp.com/opendata/SSLastDayOfMonthByCouncil?query=";
+    var url = "http://mongodb-rest.herokuapp.com/opendata/SepeLastDayOfMonthByCouncil?query=";
     var query = {"councilCode": {"$in": councilCodes}};
 
     self.load = function(f) {

@@ -1,10 +1,10 @@
 "use strict";
 /*global $:false */
-var ServiceDataLoader = function() {
+var ServiceDataLoader = function(councilCodes) {
     var self = this;
     self.load = function() {
-        var cloader = new CouncilLoader();
-        var ssloader = new SSEmploymentLoader();
+        var cloader = new CouncilLoader(councilCodes);
+        var ssloader = new SSEmploymentLoader(councilCodes);
         var output2 = [];
         // Create a new Deferred.
         var dfd = new $.Deferred();
