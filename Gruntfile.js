@@ -93,17 +93,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    deploy: grunt.file.readJSON('../deploy.json'),
-    rsync: {
-      deploy: {
-        src: "dist/",
-        dest: "<%=deploy.dest%>",
-        host: "<%=deploy.host%>",
-//        port: "1234", // Use the rsyncwrapper port option to set a non-standard ssh port if required.
-        recursive: true,
-        syncDest: true
-      }
-    },
     'gh-pages': {
       options: {
         base: 'dist'
