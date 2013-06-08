@@ -18,20 +18,15 @@ var Unemployment = new (function() {
     return m;
   };
 
-  self.sum = function(_app) {
-    var parent = _app;
-    var self = this;
+  self.sum = function() {
     var length = 0,
-            displays = new DisplayData(),
-            municipalities;
-    municipalities = parent.municipalities;
-//    data = parent.data;
+            displays = new DisplayData();
     length = data.length;
 
     for (var i = 0; i < length; i++) {
       var entry = data[i];
-      if (parent.selectedCouncilCodes.length === 0 ||
-              parent.selectedCouncilCodes.indexOf(entry.ineCode) > -1) {
+      if (self.selectedCouncilCodes.length === 0 ||
+              self.selectedCouncilCodes.indexOf(entry.ineCode) > -1) {
         if (displays.data[entry.yearMonth] === undefined) {
           displays.data[entry.yearMonth] = {total: 0};
         }
@@ -62,8 +57,6 @@ var Unemployment = new (function() {
               len = keys.length,
               highlights = {};
       keys.sort();
-//            console.log(keys[len - 1]);
-//            console.log(self.months[keys[len - 1]]);
       var current = self.months[keys[len - 1]].total;
       var previousMonth = self.months[keys[len - 2]].total;
       var previousYear = self.months[keys[len - 13]].total;
@@ -145,43 +138,20 @@ var Unemployment = new (function() {
       output[0] = [];
       output[0].push("Hilabetea");
       output[1] = [];
-      output[1].push("Orokorra");
-      output[2] = [];
-      output[2].push("Nekazaritza");
-      output[3] = [];
-      output[3].push("Itsasoa");
-      output[4] = [];
-      output[4].push("Ikatza");
-      output[5] = [];
-      output[5].push("Etxeko langileak");
-      output[6] = [];
-      output[6].push("Autonomoak");
-      output[7] = [];
-      output[7].push("Guztira");
+      output[1].push("Guztira");
 
-      var keys = Object.keys(self.months),
+      var keys = Object.keys(self.data),
               k, i,
               len = keys.length;
       keys.sort();
-      for (i = 0; i < len; i++)
-      {
+      for (i = 0; i < len; i++) {
         k = keys[i];
         output[0].push(k);
-        output[1].push(parseTableNumber(self.months[k].general));
-        output[2].push(parseTableNumber(self.months[k].farming));
-        output[3].push(parseTableNumber(self.months[k].sea));
-        output[4].push(parseTableNumber(self.months[k].coal));
-        output[5].push(parseTableNumber(self.months[k].house));
-        output[6].push(parseTableNumber(self.months[k].freelance));
-        output[7].push(parseTableNumber(self.months[k].total));
+        output[1].push(self.data[k].total);
       }
       return output;
     };
-    var parseTableNumber = function(number) {
-      if (number === 1)
-        return "<5";
-      return "" + number;
-    };
+    
     self.getTotal = function() {
       var output = [],
               outputRow = [];
@@ -190,6 +160,7 @@ var Unemployment = new (function() {
       output.push(outputRow);
       var i, len, keys = Object.keys(self.data);
       len = keys.length;
+      keys.sort();
       for (i = 0; i < len; i++) {
         outputRow = [];
         outputRow.push(self.data[keys[i]].yearMonth);
