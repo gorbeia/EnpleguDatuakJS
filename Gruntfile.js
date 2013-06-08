@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         options: {
           specs: 'test/unit/**/*.js',
 //          vendor: 'test/lib/jasmine/jasmine-jquery.js',
-          vendor: ['public_html/js/libs/jquery-1.9.1/jquery.js','test/lib/jasmine/jasmine-jquery.js', 'test/lib/jasmine-jstd-adapter/prepareForGrunt.js'],
+          vendor: ['public_html/js/libs/jquery-1.9.1/jquery.js', 'test/lib/jasmine/jasmine-jquery.js', 'test/lib/jasmine-jstd-adapter/prepareForGrunt.js'],
           helpers: 'spec/*Helper.js'
         }
       }
@@ -129,4 +129,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['clean', 'copy:libs', 'concat:js', 'uglify', 'concat:css', 'cssmin', 'targethtml:dist']);
   grunt.registerTask('deploy', ['build', 'gh-pages']);
 
+// Travis CI task.
+  grunt.registerTask('travis', 'jasmine');
 };
