@@ -2,7 +2,7 @@
 var Unemployment = new (function() {
   var self = this, data;
   self.municipalities = [];
-  self.selectedMunicipalities = {};
+  self.selectedCouncilCodes = [];
 
   self.findOrCreateMunicipality = function(_app, _municipality) {
     var parent = _app;
@@ -27,15 +27,18 @@ var Unemployment = new (function() {
     municipalities = parent.municipalities;
 //    data = parent.data;
     length = data.length;
+
     for (var i = 0; i < length; i++) {
       var entry = data[i];
-      if (displays.data[entry.yearMonth] === undefined) {
-        displays.data[entry.yearMonth] = {total: 0};
+      if (parent.selectedCouncilCodes.length === 0 ||
+              parent.selectedCouncilCodes.indexOf(entry.ineCode) > -1) {
+        if (displays.data[entry.yearMonth] === undefined) {
+          displays.data[entry.yearMonth] = {total: 0};
+        }
+        displays.data[entry.yearMonth].yearMonth = entry.yearMonth;
+        displays.data[entry.yearMonth].total += entry.total;
       }
-      displays.data[entry.yearMonth].yearMonth = entry.yearMonth;
-      displays.data[entry.yearMonth].total += entry.total;
     }
-
     return displays;
   };
 
@@ -212,10 +215,11 @@ var Unemployment = new (function() {
     data = initialData;
     var length = data.length;
 //    jasmine.log("length:" + length);
+    self.municipalities = {};
     for (var i = 0; i < length; i++) {
-      if (self.municipalities.indexOf(data[i].ineCode) === -1) {
-        self.municipalities.push(data[i].ineCode);
-      }
+//      if (Object.keys(self.municipalities).indexOf(data[i].ineCode) === -1) {
+      self.municipalities[data[i].ineCode] = {ineCode: data[i].ineCode};
+//      }
     }
     return self;
   };
