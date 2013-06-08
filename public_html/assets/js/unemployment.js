@@ -22,30 +22,18 @@ var Unemployment = new (function() {
     var parent = _app;
     var self = this;
     var length = 0,
-            m = null,
-            periodLength = 0,
             displays = new DisplayData(),
             municipalities;
     municipalities = parent.municipalities;
-    length = municipalities.length;
+//    data = parent.data;
+    length = data.length;
     for (var i = 0; i < length; i++) {
-      m = self.municipalities[i];
-      if (parent.selectedMunicipalities[m.name] === false)
-        continue;
-      periodLength = m.periods.length;
-      for (var j = 0; j < periodLength; j++) {
-        if (displays.months[m.periods[j].time] === undefined) {
-          displays.months[m.periods[j].time] = new MonthData();
-        }
-        var display = displays.months[m.periods[j].time];
-        display.general += parseInt(m.periods[j].data.general, 10);
-        display.farming += parseInt(m.periods[j].data.farming, 10);
-        display.sea += parseInt(m.periods[j].data.sea, 10);
-        display.coal += parseInt(m.periods[j].data.coal, 10);
-        display.house += parseInt(m.periods[j].data.house, 10);
-        display.freelance += parseInt(m.periods[j].data.freelance, 10);
-        display.total += parseInt(m.periods[j].data.total, 10);
+      var entry = data[i];
+      if (displays.data[entry.yearMonth] === undefined) {
+        displays.data[entry.yearMonth] = {total: 0};
       }
+      displays.data[entry.yearMonth].yearMonth = entry.yearMonth;
+      displays.data[entry.yearMonth].total += entry.total;
     }
 
     return displays;
@@ -65,7 +53,7 @@ var Unemployment = new (function() {
 
   var DisplayData = function() {
     var self = this;
-    self.months = [];
+    self.data = [];
     self.getHighLights = function() {
       var keys = Object.keys(self.months),
               len = keys.length,
@@ -194,20 +182,18 @@ var Unemployment = new (function() {
     self.getTotal = function() {
       var output = [],
               outputRow = [];
+      outputRow.push("Hilabetea");
       outputRow.push("Guztira");
       output.push(outputRow);
-      var keys = Object.keys(self.months),
-              k, i,
-              len = keys.length;
-      keys.sort();
-      for (i = 0; i < len; i++)
-      {
-        k = keys[i];
+      var i, len, keys = Object.keys(self.data);
+      len = keys.length;
+      for (i = 0; i < len; i++) {
         outputRow = [];
-        outputRow.push(k);
-        outputRow.push(self.months[k].total);
+        outputRow.push(self.data[keys[i]].yearMonth);
+        outputRow.push(self.data[keys[i]].total);
         output.push(outputRow);
       }
+      return output;
     };
   };
 
@@ -221,9 +207,17 @@ var Unemployment = new (function() {
     self.freelance = 0;
     self.total = 0;
   };
-  
+
   self.init = function(initialData) {
     data = initialData;
+    var length = data.length;
+//    jasmine.log("length:" + length);
+    for (var i = 0; i < length; i++) {
+      if (self.municipalities.indexOf(data[i].ineCode) === -1) {
+        self.municipalities.push(data[i].ineCode);
+      }
+    }
+    return self;
   };
 
   return {
